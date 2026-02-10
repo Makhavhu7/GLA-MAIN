@@ -1,0 +1,450 @@
+/* GRITLab Africa - Complete Stylesheet */
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Header Styles */
+header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 20px 0;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.logo-container {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+.app-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: darkgoldenrod;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+}
+
+/* Navigation Styles - Updated with requested items */
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Reduced gap for more items */
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  position: relative;
+  margin-left: 10px; /* Reduced margin */
+}
+
+nav ul li a {
+  color: #000;
+  font-weight: 500;
+  font-size: 11px; /* Smaller text size */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 10px; /* Reduced padding */
+  border-radius: 4px;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+nav ul li a:hover {
+  color: darkgoldenrod;
+}
+
+nav ul li a.active {
+  color: darkgoldenrod;
+  font-weight: 600;
+}
+
+/* Mobile Toggle Button */
+.mobile-toggle {
+  background: transparent;
+  border: none;
+  color: #000 !important;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background-image: linear-gradient(rgba(226, 221, 221, 0.15), rgba(226, 221, 221, 0.15)), url('Assets/images/gla.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 60px 0;
+  margin-top: 20px;
+}
+
+.hero-title {
+  color: darkgoldenrod;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.title-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.line-segment {
+  flex-grow: 1;
+  height: 1px;
+  background-color: darkgoldenrod;
+}
+
+.line-text {
+  color: darkgoldenrod;
+  padding: 0 15px;
+  white-space: nowrap;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #111;
+  color: #fff;
+  padding: 60px 0 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-links h4,
+.footer-contact h4,
+.footer-social h4 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.footer-links ul li a:hover {
+  color: darkgoldenrod;
+}
+
+.footer-contact p {
+  color: #aaa;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #ffffff;
+  background-color: #333;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: darkgoldenrod;
+  transform: translateY(-3px);
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  color: #777;
+  font-size: 0.8rem;
+}
+
+/* Intro Animation */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.intro-overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-text {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .hero {
+    height: auto;
+    padding: 120px 0 60px;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Adjusted navigation for tablet */
+  nav ul li a {
+    font-size: 10px;
+    padding: 8px 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    position: relative;
+    padding: 15px 0;
+  }
+  
+  .logo-img {
+    height: 40px;
+  }
+  
+  .app-name {
+    font-size: 1rem;
+  }
+  
+  nav {
+    position: fixed;
+    top: 0;
+    left: auto;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    transition: right 0.3s ease;
+    padding: 80px 30px 30px;
+    overflow-y: auto;
+  }
+  
+  nav.active {
+    right: 0;
+  }
+  
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  nav ul li {
+    margin: 0;
+    width: 100%;
+  }
+  
+  nav ul li a {
+    font-size: 13px;
+    padding: 12px 0;
+    display: block;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .line-text {
+    font-size: 0.9rem;
+  }
+  
+  .intro-text {
+    font-size: 2.5rem;
+  }
+  
+  nav ul li a {
+    font-size: 12px;
+  }
+}
+
+/* Utility Classes for Index Page */
+.countdown-display {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: darkgoldenrod;
+  margin-bottom: 20px;
+}
+
+.section-heading-gold {
+  color: darkgoldenrod;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.hero-slide-background {
+  background-image: url('Assets/images/GLAPic.webp');
+}
+
+.video-section-heading {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.hero-slide-apply-bg {
+  background-image: url('Assets/images/apply.png');
+}
+
+.hero-slide-apply1-bg {
+  background-image: url('Assets/images/appy1.jpg');
+}
+
+.hero-slide-media-bg {
+  background-image: url('Assets/images/ProfInterview.jpg');
+  background-position: center 30%;
+}
+
+.hero-slide-media2-bg {
+  background-image: url('Assets/images/Profinterview4.jpg');
+  background-position: top center;
+}
+
+.hero-slide-media3-bg {
+  background-image: url('Assets/images/ProfInterview3.jpg');
+  background-position: top center;
+}
+
+.hero-slide-pub-bg {
+  background-image: url('Assets/images/Team6.jpg');
+}
+
+.hero-slide-pub2-bg {
+  background-image: url('Assets/images/Team5.jpg');
+}
+
+.hero-slide-pub3-bg {
+  background-image: url('Assets/images/Team7.jpg');
+}
+
+.hero-slide-pub4-bg {
+  background-image: url('Assets/images/Team4.jpg');
+}

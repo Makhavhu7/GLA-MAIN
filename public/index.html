@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRITLab Africa Bootcamp</title>
+  <link rel="icon" type="image/png" href="Assets/images/GritLabAfricaLogo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Chatbot dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.441.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@7.0.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <!-- Masterpage CSS -->
+  <link rel="stylesheet" href="masterpage.css">
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+  
+  <!-- Custom CSS -->
+  <style>
+    .about-gritlab {
+      padding: 3rem 0;
+      background: #f8f9fa;
+    }
+
+    .about-content-card {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #eaeaea;
+    }
+
+    .about-content {
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .content-divider {
+      width: 100%;
+      border: none;
+      border-top: 2px solid darkgoldenrod;
+      margin: 1.5rem 0;
+      padding: 0;
+    }
+
+    .hero {
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #000;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 20px 0;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 120px;
+    }
+
+    .watch-video {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid darkgoldenrod;
+      color: darkgoldenrod;
+      padding: 10px 18px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .watch-video i {
+      margin-right: 8px;
+      font-size: 11px;
+      background: darkgoldenrod;
+      color: #000;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .watch-video:hover {
+      background-color: darkgoldenrod;
+      color: #000;
+      box-shadow: 0 5px 15px rgba(184, 134, 11, 0.4);
+    }
+
+    .watch-video:hover i {
+      background-color: #000;
+      color: darkgoldenrod;
+      transform: scale(1.1);
+    }
+
+    .hero-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translateZ(0) scale(1.0, 1.0);
+      transform: translateZ(0);
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-section {
+      padding: 60px 0;
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .video-wrapper {
+      margin-bottom: 40px;
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .logo {
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .logo-section p {
+      margin: 0;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #000;
+      text-decoration: underline;
+      text-decoration-color: darkgoldenrod;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+    }
+
+    @media (max-width: 991px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero {
+        height: auto;
+        padding: 120px 0 60px;
+      }
+
+      .hero-subtitle {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .video-wrapper {
+        padding-bottom: 75%;
+      }
+
+      .logo {
+        height: 50px;
+      }
+
+      .logo-section p {
+        font-size: 1.2rem;
+      }
+    }
+
+    #countdown {
+      text-shadow: 1px 1px 2px #000, 0 0 10px darkgoldenrod, 0 0 20px goldenrod;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header will be inserted by masterpage.js -->
+  <gritlab-header></gritlab-header>
+
+  <section class="hero">
+    <div class="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('Assets/images/GLAPic.webp')"></div>
+    </div>
+    <div class="container">
+      <h1>Welcome to the GRITLab Africa</h1>
+      <p class="hero-subtitle">
+        <center>GRIT Lab Africa was founded in 2016 by Professor Ade-Ibjola as a social project for training young 
+          Africans in grit and programming. Abejide mentors 116 young people across 38 higher institutions of learning 
+          in 11 African countries. The Kingsman Academic is an identity that symbolizes a person who is able to 
+          transcend the divisions in society, continuously acquire future-fit skills, solve for society using technology, 
+          and help others. GRIT Lab Africa is a non-profit program for training such young people across Africa.</center>
+      </p>
+      <br>
+      <div id="countdown" style="text-align: center; font-size: 1.8rem; font-weight: 600; color: darkgoldenrod; margin-bottom: 20px;">
+        Loading countdown...
+      </div>
+
+      <a href="https://www.youtube.com/watch?v=rLeIFHlgXW8" target="_blank" class="watch-video">
+        <i class="fas fa-play"></i> WATCH 2023 VIDEO
+      </a>
+    </div>
+  </section>
+
+  <section class="about-gritlab" id="About">
+    <div class="container">
+      <div class="about-content-card">
+        <hr class="content-divider">
+        <h2 style="color: darkgoldenrod;">About GRIT Lab Africa</h2>
+        <div class="about-content">
+          <p>GRIT Lab Africa was started by Prof. Abejide Ade-Ibijola. It's mission is to offer free training in
+            computer programming skills. It also provides mentoring in mindset, discipline, and GRIT to young people
+            throughout Africa.</p>
+
+          <p>Our vision is to create an inclusive space that trains diverse young Africans, regardless of background,
+            gender, race, religion, or ethnicity, to become champions in computer programming. We focus not only on
+            building technical skills but also on developing strong characters that care about helping others and
+            addressing societal issues through technology.</p>
+
+          <p>In five years of running GRIT Lab, we have trained hundreds of young Africans in technical skills and
+            character development. Our graduates have found jobs in South Africa's technology industry, started their
+            own tech ventures, and helped build a strong community of problem-solvers and innovators across the
+            continent.</p>
+        </div>
+        <hr class="content-divider">
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem; color: darkgoldenrod;">Watch Our Videos</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px;">
+        <div class="video-wrapper">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/r2RbYqolNTk"
+            title="GRIT Lab Africa Video 1" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="video-wrapper">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/sejj2cNKOXM"
+            title="GRIT Lab Africa Video 2" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="video-wrapper">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/rLeIFHlgXW8"
+            title="JBS Innovation Lab and GRIT Lab Africa" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="logo-section">
+        <img src="Assets/images/logo.png" alt="GRIT Lab Logo" class="logo">
+        <p>GRIT LAB AFRICA</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatbot HTML -->
+  <div class="chatbot-container hidden" id="chatbotContainer">
+    <div class="chat-header">
+      <div class="flex items-center space-x-2">
+        <div class="avatar">
+          <img src="Images/GritLab Logo.png" alt="GRIT Lab Africa Logo">
+          <div class="status"></div>
+        </div>
+        <div>
+          <h2 class="title">GRIT Lab Africa Bot <i data-lucide="zap" class="h-3 w-3"></i></h2>
+          <p class="subtitle"><i data-lucide="book-open" class="h-2 w-2"></i>Ready to answer about GRIT Lab Africa</p>
+        </div>
+      </div>
+      <span class="badge">Knowledge Powered</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="avatar"><i data-lucide="bot" class="h-4 w-4"></i></div>
+        <div class="message-content">
+          <p>👋 Hello! Ask me anything about GRIT Lab Africa!</p>
+          <div class="meta">
+            <span id="currentTime"></span>
+            <div class="actions">
+              <button class="reaction-like" aria-label="Like this message" title="Like"><i data-lucide="thumbs-up" class="h-3 w-3"></i></button>
+              <button class="reaction-dislike" aria-label="Dislike this message" title="Dislike"><i data-lucide="thumbs-down" class="h-3 w-3"></i></button>
+              <button class="copy-message" aria-label="Copy message" title="Copy"><i data-lucide="copy" class="h-3 w-3"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <form id="chatForm">
+        <div class="input-wrapper">
+          <input type="text" id="chatInput" placeholder="Ask about GRIT Lab Africa...">
+          <div class="input-actions">
+            <button type="button" aria-label="Attach file" title="Attach"><i data-lucide="paperclip" class="h-4 w-4"></i></button>
+            <button type="button" aria-label="Add emoji" title="Emoji"><i data-lucide="smile" class="h-4 w-4"></i></button>
+            <button type="button" aria-label="Voice input" title="Voice"><i data-lucide="mic" class="h-4 w-4"></i></button>
+          </div>
+        </div>
+        <button type="submit" class="send-button" aria-label="Send message" title="Send"><i data-lucide="send" class="h-4 w-4"></i></button>
+      </form>
+      <p class="input-info">Press Enter to send • Answers sourced from multiple websites</p>
+    </div>
+  </div>
+  <button class="toggle-button" id="toggleButton">
+    <img src="Images/Prof.png" alt="Toggle Chatbot">
+  </button>
+
+  <!-- Footer will be inserted by masterpage.js -->
+  <gritlab-footer></gritlab-footer>
+
+  <!-- Masterpage JS -->
+  <script src="masterpage.js"></script>
+
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+  import { getFirestore, collection, doc, getDoc, setDoc, addDoc, getDocs, query, orderBy, limit, where } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
+  import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js';
+
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyArCNt1aMvyOpf4WXdkiOk8-7JjkklsDPU",
+    authDomain: "grit-bot.firebaseapp.com",
+    projectId: "grit-bot",
+    storageBucket: "grit-bot.firebasestorage.app",
+    messagingSenderId: "606404992669",
+    appId: "1:606404992669:web:f7ada90b24b6aa42be3e74",
+    measurementId: "G-NE6XLTM3CK"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const analytics = getAnalytics(app);
+
+  // Initialize anonymous authentication
+  let userId = null;
+  let authInitialized = false;
+  signInAnonymously(auth)
+    .then(userCredential => {
+      userId = userCredential.user.uid;
+      authInitialized = true;
+      console.log('Anonymous auth successful, userId:', userId);
+      loadConversationHistory();
+    })
+    .catch(error => {
+      console.error('Auth error:', error.code, error.message);
+      alert(`Failed to initialize chat: ${error.message}. Please refresh or contact support.`);
+    });
+
+  lucide.createIcons();
+
+  function updateTime() {
+    document.getElementById('currentTime').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+  updateTime();
+  setInterval(updateTime, 60000);
+
+  function toggleChatbot() {
+    console.log('Toggling chatbot');
+    const chatbot = document.getElementById('chatbotContainer');
+    const toggleButton = document.getElementById('toggleButton');
+    if (chatbot.classList.contains('hidden')) {
+      chatbot.classList.remove('hidden');
+      toggleButton.classList.remove('visible');
+    } else {
+      chatbot.classList.add('hidden');
+      toggleButton.classList.add('visible');
+    }
+  }
+
+  let conversationHistory = [];
+
+  async function checkRateLimit() {
+    console.log('Checking rate limit for userId:', userId);
+    if (!userId || !authInitialized) {
+      console.error('Authentication not ready. userId:', userId, 'authInitialized:', authInitialized);
+      alert('Authentication not ready. Please try again.');
+      return false;
+    }
+    const rateLimitRef = doc(db, 'rateLimits', userId);
+    const docSnap = await getDoc(rateLimitRef);
+    const now = Date.now();
+    const windowMs = 60 * 1000; // 1 minute
+    const maxRequests = 10;
+
+    if (!docSnap.exists()) {
+      console.log('No rate limit doc found, creating new one');
+      await setDoc(rateLimitRef, { count: 1, timestamp: now });
+      return true;
+    }
+
+    const data = docSnap.data();
+    console.log('Rate limit data:', data);
+    if (now - data.timestamp > windowMs) {
+      console.log('Resetting rate limit');
+      await setDoc(rateLimitRef, { count: 1, timestamp: now });
+      return true;
+    }
+
+    if (data.count >= maxRequests) {
+      console.log('Rate limit exceeded');
+      return false;
+    }
+
+    console.log('Incrementing rate limit count');
+    await setDoc(rateLimitRef, { count: data.count + 1, timestamp: now });
+    return true;
+  }
+
+  async function loadConversationHistory() {
+    if (!userId || !authInitialized) {
+      console.error('Cannot load conversation history: userId or auth not initialized');
+      return;
+    }
+    console.log('Loading conversation history for userId:', userId);
+    const historyQuery = query(
+      collection(db, 'conversations', userId, 'history'),
+      orderBy('timestamp', 'desc'),
+      limit(5)
+    );
+    try {
+      const snapshot = await getDocs(historyQuery);
+      conversationHistory = snapshot.docs.map(doc => doc.data());
+      console.log('Conversation history loaded:', conversationHistory);
+      updateQuickPrompts();
+    } catch (error) {
+      console.error('Error loading conversation history:', error.message);
+    }
+  }
+
+  async function saveConversation(queryText, response) {
+    if (!userId || !authInitialized) {
+      console.error('Cannot save conversation: userId or auth not initialized');
+      return;
+    }
+    console.log('Saving conversation:', { queryText, response });
+    try {
+      await addDoc(collection(db, 'conversations', userId, 'history'), {
+        query: queryText,
+        response,
+        timestamp: new Date()
+      });
+      conversationHistory.push({ query: queryText, response });
+      conversationHistory = conversationHistory.slice(-5);
+      updateQuickPrompts();
+    } catch (error) {
+      console.error('Error saving conversation:', error.message);
+    }
+  }
+
+  async function checkCache(queryText) {
+    console.log('Checking cache for query:', queryText);
+    const normalizedQuery = queryText.toLowerCase().trim();
+    const cacheQuery = query(collection(db, 'cache'), where('query', '==', normalizedQuery));
+    try {
+      const snapshot = await getDocs(cacheQuery);
+      if (!snapshot.empty) {
+        const doc = snapshot.docs[0].data();
+        const cacheTime = doc.timestamp.toDate().getTime();
+        const now = Date.now();
+        const ttlMs = 24 * 60 * 60 * 1000; // 24 hours
+        if (now - cacheTime < ttlMs) {
+          console.log('Cache hit:', doc);
+          return { content: doc.response, source: doc.source, scores: doc.scores || [] };
+        } else {
+          console.log('Cache expired, deleting');
+          await snapshot.docs[0].ref.delete();
+        }
+      } else {
+        console.log('No cache hit for query:', normalizedQuery);
+      }
+    } catch (error) {
+      console.error('Error checking cache:', error.message);
+    }
+    return null;
+  }
+
+  async function findClosestCachedQuery(queryText) {
+    console.log('Finding closest cached query for:', queryText);
+    const normalizedQuery = queryText.toLowerCase().trim();
+    const tokens = normalizedQuery.split(/\s+/);
+    try {
+      const cacheQuery = query(collection(db, 'cache'), orderBy('timestamp', 'desc'), limit(50));
+      const snapshot = await getDocs(cacheQuery);
+      if (snapshot.empty) {
+        console.log('No cached queries found');
+        return null;
+      }
+
+      let bestMatch = null;
+      let highestScore = 0;
+
+      snapshot.docs.forEach(doc => {
+        const cachedQuery = doc.data().query.toLowerCase().trim();
+        const cachedTokens = cachedQuery.split(/\s+/);
+        const intersection = tokens.filter(token => cachedTokens.includes(token));
+        const score = intersection.length / Math.max(tokens.length, cachedTokens.length, 1);
+
+        if (score > highestScore && score >= 0.4) { // Lowered threshold for broader matching
+          highestScore = score;
+          bestMatch = {
+            content: doc.data().response,
+            source: doc.data().source,
+            scores: doc.data().scores || [],
+            query: cachedQuery
+          };
+        }
+      });
+
+      if (bestMatch) {
+        console.log('Closest cached query found:', bestMatch.query, 'Score:', highestScore);
+        return bestMatch;
+      } else {
+        console.log('No sufficiently similar cached query found');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error finding closest cached query:', error.message);
+      return null;
+    }
+  }
+
+  async function saveToCache(queryText, response, source, scores) {
+    console.log('Saving to cache:', { queryText, response, source, scores });
+    try {
+      await addDoc(collection(db, 'cache'), {
+        query: queryText.toLowerCase().trim(),
+        response,
+        source,
+        scores,
+        timestamp: new Date()
+      });
+      console.log('Cache saved successfully');
+    } catch (error) {
+      console.error('Error saving to cache:', error.message);
+    }
+  }
+
+  // Hardcoded fallback responses for common queries
+  const fallbackResponses = {
+    location: {
+      keywords: ['location', 'address', 'where'],
+      response: 'Grit Lab Africa is located at 69 Kingsway Avenue, JBS Park, Auckland Park, South Africa.\n\n**Source**: GRIT Lab Africa Website Footer',
+      source: 'GRIT Lab Africa Website Footer'
+    },
+    contact: {
+      keywords: ['contact', 'phone', 'email'],
+      response: 'You can contact GRIT Lab Africa at Phone: 011 599 1989, Email: info@gritlabafrica.org.\n\n**Source**: GRIT Lab Africa Website Footer',
+      source: 'GRIT Lab Africa Website Footer'
+    },
+    programs: {
+      keywords: ['programs', 'bootcamp', 'courses', 'training'],
+      response: 'GRIT Lab Africa offers free training in computer programming skills, including Introductory Programming, Data Structures and Algorithms, Web Development, Mobile App Development, Game Development, Data Science, and Machine Learning, along with mentoring in mindset, discipline, and GRIT.\n\n**Source**: GRIT Lab Africa Website (https://www.gritlabafrica.org/about)',
+      source: 'GRIT Lab Africa Website (https://www.gritlabafrica.org/about)'
+    },
+    eligibility: {
+      keywords: ['eligibility', 'apply', 'join', 'requirements', 'win'],
+      response: 'To join GRIT Lab Africa, applicants must be 18-21 years old (or provide motivation if younger/older), African residents, registered in an accredited African higher institution, studying a STEM-related field (or non-STEM with tech interest), in their first or second year with a 65%+ average, and disciplined. No prior programming knowledge is required.\n\n**Source**: GRIT Lab Africa Website (https://www.gritlabafrica.org/apply)',
+      source: 'GRIT Lab Africa Website (https://www.gritlabafrica.org/apply)'
+    },
+    founder: {
+      keywords: ['founder', 'founded', 'who started'],
+      response: 'GRIT Lab Africa was founded in 2016 by Professor Abejide Ade-Ibijola.\n\n**Source**: GRIT Lab Africa Website (https://www.gritlabafrica.org/)',
+      source: 'GRIT Lab Africa Website (https://www.gritlabafrica.org/)'
+    },
+    benefits: {
+      keywords: ['benefits', 'skills', 'what do i get'],
+      response: 'Participants in GRIT Lab Africa gain skills in programming (e.g., Web Development, Data Science), mindset training, discipline, and GRIT. Graduates have a 100% employment rate in South Africa’s tech industry and opportunities to start tech ventures.\n\n**Source**: GRIT Lab Africa Website (https://www.gritlabafrica.org/about)',
+      source: 'GRIT Lab Africa Website (https://www.gritlabafrica.org/about)'
+    }
+  };
+
+  // Keyword mapping for query normalization (similar to server-side synonymMap)
+  const keywordMap = {
+    'bootcamp': 'programs',
+    'bootcapm': 'programs',
+    'course': 'programs',
+    'training': 'programs',
+    'win': 'eligibility',
+    'join': 'eligibility',
+    'apply': 'eligibility',
+    'requirements': 'eligibility',
+    'where': 'location',
+    'address': 'location',
+    'phone': 'contact',
+    'email': 'contact',
+    'skill': 'benefits',
+    'benefits': 'benefits',
+    'founded': 'founder',
+    'starter': 'founder',
+    'who started': 'founder'
+  };
+
+  function normalizeQuery(queryText) {
+    let normalized = queryText.toLowerCase().trim();
+    Object.keys(keywordMap).forEach(word => {
+      normalized = normalized.replace(new RegExp(`\\b${word}\\b`, 'gi'), keywordMap[word]);
+    });
+    return normalized;
+  }
+
+  async function handleSendMessage(event) {
+    console.log('handleSendMessage triggered');
+    event.preventDefault();
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    console.log('Message input:', message);
+    if (!message) {
+      console.log('Empty message, exiting');
+      return;
+    }
+
+    if (!authInitialized) {
+      console.error('Authentication not ready. authInitialized:', authInitialized);
+      alert('Authentication not ready. Please wait and try again.');
+      return;
+    }
+
+    if (!(await checkRateLimit())) {
+      console.error('Rate limit exceeded');
+      alert('Rate limit exceeded. Please wait a minute before trying again.');
+      return;
+    }
+
+    const messagesContainer = document.getElementById('chatMessages');
+    const userMessage = document.createElement('div');
+    userMessage.className = 'message user';
+    userMessage.innerHTML = `
+      <div class="message-content">
+        <p>${message}</p>
+        <div class="meta">
+          <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+          <div class="actions">
+            <button class="copy-message"><i data-lucide="copy" class="h-3 w-3"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="avatar"><i data-lucide="user" class="h-4 w-4"></i></div>
+    `;
+    messagesContainer.appendChild(userMessage);
+    input.value = '';
+    console.log('User message appended');
+
+    const loadingSpinner = document.createElement('div');
+    loadingSpinner.className = 'loading-spinner';
+    loadingSpinner.innerHTML = `
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    `;
+    messagesContainer.appendChild(loadingSpinner);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    console.log('Loading spinner added');
+
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    let answer = '';
+    let source = 'None';
+    let scores = [];
+    const normalizedQuery = normalizeQuery(message);
+    console.log('Normalized query:', normalizedQuery);
+
+    try {
+      // Try exact cache match first
+      const cachedResult = await checkCache(normalizedQuery);
+      if (cachedResult) {
+        console.log('Using cached result');
+        answer = cachedResult.content;
+        source = cachedResult.source;
+        scores = cachedResult.scores;
+      } else {
+        console.log('Fetching from Netlify function');
+        const response = await fetch('/.netlify/functions/queryOpenSources', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: normalizedQuery, userId })
+        });
+        console.log('Fetch response status:', response.status);
+        if (!response.ok) {
+          console.error('Fetch failed with status:', response.status);
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Fetch response data:', data);
+        if (data.error) {
+          console.error('Netlify function error:', data.error);
+          throw new Error(data.error);
+        }
+        answer = data.content || `
+          Sorry, I couldn’t find specific information about "${message}". GRIT Lab Africa is a non-profit focused on tech training for young Africans. Try asking about its programs, benefits, awards, certificates, team, or projects.
+
+          **Source**: GRIT Lab Africa Website
+        `;
+        source = data.source || 'GRIT Lab Africa Website';
+        scores = data.scores || [];
+        await saveToCache(normalizedQuery, answer, source, scores);
+      }
+    } catch (error) {
+      console.error('Error in handleSendMessage:', error.message);
+      // Try to find a similar cached query
+      const similarResult = await findClosestCachedQuery(normalizedQuery);
+      if (similarResult) {
+        console.log('Using similar cached result for query:', similarResult.query);
+        answer = DOMPurify.sanitize(marked.parse(`
+          
+          ${similarResult.content}
+          
+          **Source**: ${similarResult.source}
+          Please try again or ask about GRIT Lab Africa's programs, benefits, awards, certificates, team, or projects.
+        `));
+        source = similarResult.source;
+        scores = similarResult.scores;
+      } else {
+        // Check for keyword matches in fallbackResponses
+        let matchedKey = null;
+        for (const key in fallbackResponses) {
+          if (fallbackResponses[key].keywords.some(keyword => normalizedQuery.includes(keyword))) {
+            matchedKey = key;
+            break;
+          }
+        }
+        if (matchedKey) {
+          console.log('Using fallback response for:', matchedKey);
+          answer = DOMPurify.sanitize(marked.parse(`
+            ${fallbackResponses[matchedKey].response}
+            
+            **Note**: This is a fallback response due to an error (${error.message}). For more details, contact info@gritlabafrica.org.
+          `));
+          source = fallbackResponses[matchedKey].source;
+        } else {
+          // Ultimate fallback if no cache or keyword match
+          answer = DOMPurify.sanitize(marked.parse(`
+            Sorry, I couldn’t fetch information due to an error (${error.message}). GRIT Lab Africa is a non-profit focused on tech training for young Africans. Try asking about its programs, benefits, awards, certificates, team, or projects.
+
+            **Source**: None
+            **Note**: Contact info@gritlabafrica.org for more information.
+          `));
+        }
+      }
+    }
+
+    // Parse and sanitize answer if not already done
+    if (!answer.includes('<p>')) {
+      answer = DOMPurify.sanitize(marked.parse(answer));
+    }
+    await saveConversation(message, answer);
+
+    const botMessage = document.createElement('div');
+    botMessage.className = 'message bot';
+    botMessage.innerHTML = `
+      <div class="avatar"><i data-lucide="bot" class="h-4 w-4"></i></div>
+      <div class="message-content">
+        ${answer}
+        <div class="meta">
+          <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+          <div class="actions">
+            <button class="reaction-like" aria-label="Like this message" title="Like"><i data-lucide="thumbs-up" class="h-3 w-3"></i></button>
+            <button class="reaction-dislike" aria-label="Dislike this message" title="Dislike"><i data-lucide="thumbs-down" class="h-3 w-3"></i></button>
+            <button class="copy-message" aria-label="Copy message" title="Copy"><i data-lucide="copy" class="h-3 w-3"></i></button>
+          </div>
+        </div>
+      </div>
+    `;
+    messagesContainer.removeChild(loadingSpinner);
+    messagesContainer.appendChild(botMessage);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    lucide.createIcons();
+    console.log('Bot message appended');
+  }
+
+  function handleKeyPress(event) {
+    console.log('handleKeyPress triggered, key:', event.key);
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      handleSendMessage(event);
+    }
+  }
+
+  function setInput(text) {
+    console.log('Setting input:', text);
+    document.getElementById('chatInput').value = text;
+  }
+
+  function copyMessage(content) {
+    console.log('Copying message:', content);
+    navigator.clipboard.writeText(content.replace(/<[^>]+>/g, '')).then(() => {
+      alert('Message copied to clipboard!');
+    }).catch(err => {
+      console.error('Copy failed:', err);
+    });
+  }
+
+  function handleReaction(id, reaction) {
+    console.log('Handling reaction:', { id, reaction });
+    const button = event.target.closest('button');
+    if (reaction === 'like') {
+      button.style.color = button.style.color === 'rgb(74, 222, 128)' ? '' : '#4ade80';
+    } else {
+      button.style.color = button.style.color === 'rgb(248, 113, 113)' ? '' : '#f87171';
+    }
+    alert(reaction === 'like' ? 'Thanks for the feedback!' : 'Feedback received');
+  }
+
+  async function updateQuickPrompts() {
+    console.log('Updating quick prompts');
+    const promptsContainer = document.getElementById('quickPrompts');
+    const defaultPrompts = [
+      'What is GRIT Lab Africa?',
+      'Who founded GRIT Lab Africa?',
+      'What programs does GRIT Lab Africa offer?',
+      'What skills can I get from GRIT Lab Africa?',
+    ];
+    const recentPrompts = conversationHistory.slice(-2).map(item => item.query);
+    const prompts = [...new Set([...defaultPrompts, ...recentPrompts])].slice(0, 11);
+    promptsContainer.innerHTML = prompts.map(p => `<button data-prompt="${p}">${p}</button>`).join('');
+    console.log('Quick prompts updated:', prompts);
+
+    document.querySelectorAll('#quickPrompts button').forEach(button => {
+      button.addEventListener('click', () => {
+        const promptText = button.getAttribute('data-prompt');
+        setInput(promptText);
+      });
+    });
+  }
+
+  function initializeEventListeners() {
+    const chatForm = document.getElementById('chatForm');
+    chatForm.addEventListener('submit', handleSendMessage);
+
+    const chatInput = document.getElementById('chatInput');
+    chatInput.addEventListener('keypress', handleKeyPress);
+
+    document.querySelectorAll('.copy-message').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.closest('.message-content').innerHTML;
+        copyMessage(content);
+      });
+    });
+
+    document.querySelectorAll('.reaction-like').forEach(button => {
+      button.addEventListener('click', () => handleReaction('temp', 'like'));
+    });
+
+    document.querySelectorAll('.reaction-dislike').forEach(button => {
+      button.addEventListener('click', () => handleReaction('temp', 'dislike'));
+    });
+
+    document.getElementById('toggleButton').addEventListener('click', toggleChatbot);
+  }
+
+  initializeEventListeners();
+  updateQuickPrompts();
+  console.log('Script initialized');
+</script>
+
+  
+  <!-- Custom JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+
+          const target = document.querySelector(targetId);
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    function startCountdown() {
+      const countdownElement = document.getElementById('countdown');
+      // Applications open on February 9th, 2026
+      countdownElement.innerHTML = "Applications open February 9th, 2026";
+    }
+
+    document.addEventListener('DOMContentLoaded', startCountdown);
+  </script>
+</body>
+</html>

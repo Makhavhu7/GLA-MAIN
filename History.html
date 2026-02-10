@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our History - GRITLab Africa</title>
+  <link rel="icon" type="image/png" href="Assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="masterpage.css">
+  <script src="masterpage.js" defer></script>
+
+  <!-- Chatbot dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.441.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@7.0.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  
+  <!-- Masterpage CSS -->
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #000;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    .hero {
+      height: 60vh;
+      position: relative;
+      overflow: hidden;
+      color: #000;
+      display: flex;
+      align-items: center;
+      background: url('Assets/images/graduate1.jpg') no-repeat center center/cover;
+      background-color: rgba(0, 0, 0, 0.3);
+      background-blend-mode: overlay;
+      margin-top: 80px; /* Offset for fixed header */
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 20px 0;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .section {
+      padding: 4rem 0;
+      background: linear-gradient(135deg, #f9f6f0 0%, #ffffff 100%);
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #000;
+      position: relative;
+    }
+
+    .section h2::after {
+      content: '';
+      width: 100px;
+      height: 3px;
+      background: darkgoldenrod;
+      display: block;
+      margin: 10px auto;
+    }
+
+    .section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #000;
+      position: relative;
+      text-align: center;
+    }
+
+    .section h3::after {
+      content: '';
+      width: 80px;
+      height: 2px;
+      background: darkgoldenrod;
+      display: block;
+      margin: 8px auto;
+    }
+
+    .grit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .grit-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 5px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(184, 134, 11, 0.2);
+    }
+
+    .grit-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      border: 2px solid darkgoldenrod;
+    }
+
+    .grit-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .grit-card p {
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      color: darkgoldenrod;
+      margin-bottom: 1rem;
+    }
+
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .class-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 5px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .class-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(184, 134, 11, 0.2);
+    }
+
+    .class-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .class-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .class-card p {
+      color: #555;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .full-width-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 5px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .full-width-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(184, 134, 11, 0.2);
+    }
+
+    .full-width-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .vertical-gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .vertical-gallery .class-card {
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .graduate-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 2rem;
+    }
+
+    .graduate-item {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 5px;
+      padding: 15px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+
+    .graduate-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(184, 134, 11, 0.15);
+    }
+
+    .graduate-item p {
+      color: #333;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .graduate-item .award-icon {
+      color: darkgoldenrod;
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 991px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero {
+        height: 50vh;
+        padding: 100px 0 60px;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      .full-width-card img {
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero-subtitle {
+        font-size: 0.9rem;
+      }
+      .class-card img {
+        height: 150px;
+      }
+      .full-width-card img {
+        height: 300px;
+      }
+      .graduate-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <gritlab-header></gritlab-header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="our-history">
+    <div class="container">
+      
+    </div>
+  </section>
+
+  <!-- 2023 Graduates Section -->
+  <section class="section graduate-gallery">
+           
+      <div class="vertical-gallery">
+        <div class="class-card">
+          <img src="Assets/images/graduate2.jpg" alt="Graduate Image 2">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate3.jpg" alt="Graduate Image 3">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate4.jpg" alt="Graduate Image 4">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate5.jpg" alt="Graduate Image 5">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate6.jpg" alt="Graduate Image 6">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate7.jpg" alt="Graduate Image 7">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate8.jpg" alt="Graduate Image 8">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate9.jpg" alt="Graduate Image 9">
+          
+        </div>
+        <div class="class-card">
+          <img src="Assets/images/graduate10.jpg" alt="Graduate Image 10">
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section graduate-list-section">
+    <div class="full-width-card">
+        <img src="Assets/images/graduatepicture.jpg" alt="Graduate Image 1">
+        
+      </div>
+      
+      <div class="graduate-list">
+        <div class="graduate-item">
+          <h4>Completed With Distinction & Certificate of Top Programming Talent</h4>
+          <p><i class="fas fa-trophy award-icon"></i>Mahammeddanis Safiq Gulamali (JBS-GL333)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Keletso Ntseno (JBS-GL353)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Mymouna Lo (JBS-GL474)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Zanele Ndlovu (JBS-GL454)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Brody Griffin (JBS-GL327)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Makhavhu Mbofheni Junior (JBS-GL190)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Ikaneng Mmako (JBS-GL027)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Katlego Piet Seoloana (JBS-GL211)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Ndivhuwo Sigudu (JBS-GL362)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Ruan Bezuidenhout (JBS-GL366)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Mooketsi Kosa (JBS-GL410)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Uhone Mamaila (JBS-GL084)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Karabo Shai (JBS-GL279)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Hillgate Sambo (JBS-GL162)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Ovayo Ntebe (JBS-GL456)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Trister Tembo (JBS-GL380)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Jackie Musakwa (JBS-GL307)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Takunda Hwengwere (JBS-GL212)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Brian Mabukwa (JBS-GL367)</p>
+          <p><i class="fas fa-trophy award-icon"></i>Onalenna Modise (JBS-GL479)</p>
+        </div>
+        <div class="graduate-item">
+          <h4>Completed With Distinction</h4>
+          <p><i class="fas fa-medal award-icon"></i>Tania Mwambuyi Tshiyamba (JBS-GL437)</p>
+          <p><i class="fas fa-medal award-icon"></i>Muyumba Voldi (JBS-GL116)</p>
+          <p><i class="fas fa-medal award-icon"></i>Sibonelo Dlamini (JBS-GL263)</p>
+          <p><i class="fas fa-medal award-icon"></i>Antonela Domingos (JBS-GL314)</p>
+          <p><i class="fas fa-medal award-icon"></i>Realeboha Nthathakane (JBS-GL351)</p>
+          <p><i class="fas fa-medal award-icon"></i>Mihlayokuphela Thomo (JBS-GL260)</p>
+          <p><i class="fas fa-medal award-icon"></i>Ashraf Noor-Mahomed (JBS-GL268)</p>
+          <p><i class="fas fa-medal award-icon"></i>Luvuyo Yeni (JBS-GL241)</p>
+          <p><i class="fas fa-medal award-icon"></i>Siphosami Mtsweni (JBS-GL434)</p>
+          <p><i class="fas fa-medal award-icon"></i>Clive Mashiloane (JBS-GL284)</p>
+          <p><i class="fas fa-medal award-icon"></i>Oratile Selepe (JBS-GL336)</p>
+          <p><i class="fas fa-medal award-icon"></i>Thabiso Shongwe (JBS-GL385)</p>
+          <p><i class="fas fa-medal award-icon"></i>Fortunate Sekowe (JBS-GL442)</p>
+          <p><i class="fas fa-medal award-icon"></i>Tebello Mothapo (JBS-GL280)</p>
+          <p><i class="fas fa-medal award-icon"></i>Sabelo Zwane (JBS-GL341)</p>
+          <p><i class="fas fa-medal award-icon"></i>Edzani Phundulu (JBS-GL371)</p>
+          <p><i class="fas fa-medal award-icon"></i>Loyiso Ndotho (JBS-GL393)</p>
+          <p><i class="fas fa-medal award-icon"></i>Welcome Makhubo (JBS-GL134)</p>
+          <p><i class="fas fa-medal award-icon"></i>Kabelo Monyela (JBS-GL165)</p>
+          <p><i class="fas fa-medal award-icon"></i>Sibusiso Mlambo (JBS-GL179)</p>
+          <p><i class="fas fa-medal award-icon"></i>Asandile Ntsele (JBS-GL155)</p>
+          <p><i class="fas fa-medal award-icon"></i>Emmanuel Lombe (JBS-GL383)</p>
+          <p><i class="fas fa-medal award-icon"></i>Lindelani Xaba (JBS-GL374)</p>
+          <p><i class="fas fa-medal award-icon"></i>Kamogelo Hlahla (JBS-GL438)</p>
+          <p><i class="fas fa-medal award-icon"></i>Knowledge Moyane (JBS-GL315)</p>
+          <p><i class="fas fa-medal award-icon"></i>Lassie Khoza (JBS-GL432)</p>
+          <p><i class="fas fa-medal award-icon"></i>Munyaradzi Chisinahama (JBS-GL310)</p>
+          <p><i class="fas fa-medal award-icon"></i>Thendo Bigman (JBS-GL166)</p>
+          <p><i class="fas fa-medal award-icon"></i>Abdullah Mayet (JBS-GL090)</p>
+          <p><i class="fas fa-medal award-icon"></i>Tshegofatso Thobejane (JBS-GL172)</p>
+          <p><i class="fas fa-medal award-icon"></i>Mandilakhe Fetheni (JBS-GL210)</p>
+          <p><i class="fas fa-medal award-icon"></i>Trinity Galaletsang Mofokeng (JBS-GL467)</p>
+          <p><i class="fas fa-medal award-icon"></i>Shahida Zhange (JBS-GL150)</p>
+          <p><i class="fas fa-medal award-icon"></i>Tlhonepo Manyanye (JBS-GL156)</p>
+          <p><i class="fas fa-medal award-icon"></i>Nyeko Benedictor Ntjabane (JBS-GL387)</p>
+          <p><i class="fas fa-medal award-icon"></i>Lenique Feldman (JBS-GL292)</p>
+          <p><i class="fas fa-medal award-icon"></i>Rotshidzwa Nenungwi (JBS-GL459)</p>
+          <p><i class="fas fa-medal award-icon"></i>Wonderful Ngwenya (JBS-GL178)</p>
+          <p><i class="fas fa-medal award-icon"></i>Nkosinomusa Dladla (JBS-GL197)</p>
+          <p><i class="fas fa-medal award-icon"></i>Thabiso Nchabeleng (JBS-GL086)</p>
+          <p><i class="fas fa-medal award-icon"></i>Aiden Zeifert (JBS-GL124)</p>
+          <p><i class="fas fa-medal award-icon"></i>Mohammed Elsaigh (JBS-GL295)</p>
+          <p><i class="fas fa-medal award-icon"></i>Polycarp Rackara (JBS-GL403)</p>
+          <p><i class="fas fa-medal award-icon"></i>Tumelo Nawa (JBS-GL303)</p>
+          <p><i class="fas fa-medal award-icon"></i>Anenishe Aneen Zenda (JBS-GL266)</p>
+          <p><i class="fas fa-medal award-icon"></i>Tafadzwa Nicole Kurwa (JBS-GL205)</p>
+          <p><i class="fas fa-medal award-icon"></i>Libelelang Ndlovu (JBS-GL017)</p>
+          <p><i class="fas fa-medal award-icon"></i>Destiny Mabwe (JBS-GL257)</p>
+          <p><i class="fas fa-medal award-icon"></i>James Junior Masaga (JBS-GL207)</p>
+          <p><i class="fas fa-medal award-icon"></i>Darrell Rundanda (JBS-GL208)</p>
+        </div>
+        <div class="graduate-item">
+          <h4>Completed With Merit</h4>
+          <p><i class="fas fa-certificate award-icon"></i>Ibrahim Kabore (JBS-GL412)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Chekina Muteka (JBS-GL382)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Teboho Molelekoa (JBS-GL343)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Gift Adelowotan (JBS-GL446)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Emmanuel Ashimwe (JBS-GL143)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Ahmed Dahir Osman (JBS-GL198)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Inongé Matai (JBS-GL164)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Relebohile Masita (JBS-GL118)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Tlaletsi Mfebe (JBS-GL332)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Obakeng Ramarou (JBS-GL224)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Kabelo Mpai (JBS-GL458)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Muziwakhe Mabuza (JBS-GL142)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Shawn Mbhalati (JBS-GL373)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bulela Mdingi (JBS-GL136)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Karabo Thato Moreti (JBS-GL331)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Musa Mlaza (JBS-GL235)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Tumelo Rakgantsho (JBS-GL305)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Keamogetse Morongwa (JBS-GL328)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mpho Khoza (JBS-GL320)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Tshedza Sadiki (JBS-GL163)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Frederick Hlengani Manganyi (JBS-GL144)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Tshiamo Neo Ngwana (JBS-GL325)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bonga Chiloane (JBS-GL465)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bodwa Nkambule (JBS-GL404)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Ofentse Seko (JBS-GL406)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Siphiwe Gumede (JBS-GL400)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bradley Thutse (JBS-GL147)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Noluthando Tyana (JBS-GL242)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nduduzo Mchunu (JBS-GL182)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Henriette van der Merwe (JBS-GL334)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Simamkele Noludwe (JBS-GL381)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Tebogo Tonkeu (JBS-GL250)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bakhona Sithebe (JBS-GL322)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Dineo Nuka (JBS-GL148)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mxolisi Mncube (JBS-GL298)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mosa Modise (JBS-GL286)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Khanyisile Ndlovu (JBS-GL299)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Kamogelo Nwandule (JBS-GL002)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Siyabonga Khumalo (JBS-GL276)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Karabo Lesia (JBS-GL444)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Reabetswe Mahlangu (JBS-GL352)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Matlhogonolo Chauke (JBS-GL219)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mulanga Glen Ndou (JBS-GL100)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Rivoni Shakirah Nkuna (JBS-GL464)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Siyabonga Masombuka (JBS-GL269)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Amahle Mxuma (JBS-GL145)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Palesa Tlhoaele (JBS-GL236)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Kagiso Mashita (JBS-GL405)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nazire Mathe (JBS-GL068)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Elias Phala (JBS-GL462)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Thato Mathetsa (JBS-GL140)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Asemahle Ndceke (JBS-GL240)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Calvin Sello (JBS-GL361)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Gosiame Marope (JBS-GL453)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Rolani Baloyi (JBS-GL338)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lwandile Ndlovu (JBS-GL398)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nomvula Happyness (JBS-GL177)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Pamella Madiba (JBS-GL071)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Gugulethu Skosana (JBS-GL324)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Tshegofatso Moloto (JBS-GL251)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Orefile Kubjana (JBS-GL168)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nhlanhla Bhengu (JBS-GL019)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Asanda Mfeka (JBS-GL321)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Katlego Mehlaba Baloyi (JBS-GL070)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Andisani Ramavhona (JBS-GL262)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Sibongile Dlamini (JBS-GL220)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Letlhogonolo Mathebula (JBS-GL287)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Thando Khoza (JBS-GL193)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Matome Masinga (JBS-GL170)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Melinda Vilanculo (JBS-GL294)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lesego Moatlhodi (JBS-GL317)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Emmanuel Rameetse (JBS-GL209)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Karishma Valla (JBS-GL117)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Phetsile Mncube (JBS-GL161)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lesedi Makau (JBS-GL413)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Goitsemodimo Meno (JBS-GL368)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Aphiwe Khumalo (JBS-GL088)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Tebogo Tshukudu (JBS-GL087)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lindiwe Khumalo (JBS-GL377)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Maria Chimowa (JBS-GL033)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mahlatse Msibi (JBS-GL384)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bonginkosi Ndhlovu (JBS-GL191)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Christenvie Makieya (JBS-GL016)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lerato Promise Nama (JBS-GL238)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Keabetswe Moloto (JBS-GL407)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Iviwe Faku (JBS-GL009)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Happy Siphesihle Dladla (JBS-GL389)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Galaletsang Matshoge (JBS-GL291)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Samrin Shaikh (JBS-GL316)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Phumla Maxegwana (JBS-GL065)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Thapelo Tsheoga (JBS-GL025)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Molebogeng Setati (JBS-GL301)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Amanda Mayezana (JBS-GL231)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nhlanhla Msomi (JBS-GL077)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mahlodi Kobedi (JBS-GL062)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lonwabo Somphali (JBS-GL126)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Grace Mncube (JBS-GL206)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Simphiwe Hadebe (JBS-GL023)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Oamogetswe Motshwanedi (JBS-GL057)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Ponkie Monyae (JBS-GL369)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mbali Precious Sewula (JBS-GL340)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Kamogelo Mabatha (JBS-GL030)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bulelwa Rantle (JBS-GL176)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Ndzalama Maluleke (JBS-GL048)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nndamulele Tshipapa (JBS-GL078)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Boikgantsho Malepe (JBS-GL159)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Hellen Tlamama (JBS-GL463)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Luyanda Radebe (JBS-GL472)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Confidance Dipuo Phukubye (JBS-GL245)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Edwin Serage (JBS-GL425)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Karabo Makhalemele (JBS-GL339)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lerato Motaung (JBS-GL417)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Senzekile Dulcie Mangane (JBS-GL447)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mpho Radiswinga (JBS-GL423)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Phathutshedzo Vhengani (JBS-GL431)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mohapi Klaas (JBS-GL129)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nkosikhona Dlamini (JBS-GL059)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Dudu Kgaditse (JBS-GL030)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Minenhle Nkosi (JBS-GL363)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mandla Ndlovu (JBS-GL074)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Lebohang Lenaka (JBS-GL111)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Mondli Mthombeni (JBS-GL001)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Nobuhle Zwane (JBS-GL427)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Micaela Mckenzie (JBS-GL296)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Isaiah Muhumuza (JBS-GL097)</p>
+          <p><i class="fas fa-certificate award-icon"></i>George Mugale (JBS-GL149)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Primrose Dube (JBS-GL064)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Patricia Mashasha (JBS-GL265)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Dylan Choga (JBS-GL426)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Melinkosi Kanengoni (JBS-GL460)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Bridget Maposa (JBS-GL217)</p>
+          <p><i class="fas fa-certificate award-icon"></i>Muhammad Yaaseen Chandlay (JBS-GL478)</p>
+        </div>
+        <div class="graduate-item">
+          <h4>Certificate of Completion</h4>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Kgololesego Bantsijang (JBS-GL424)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Pontsho Makofane (JBSP-GL186)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Lisolomzi Mbangata (JBS-GL216)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Thato Manale (JBS-GL477)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Komane Mamogobo (JBS-GL252)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Mmatema Selepe (JBS-GL259)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Thando Skosana (JBS-GL039)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Karen Mandishona (JBS-GL448)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Hlokomelo Kobe (JBS-GL433)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Emmanuel Axel Ndayiragije (JBS-GL346)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Thubelihle Masilela (JBS-GL452)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Phumzile Gladys Maseko (JBS-GL018)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Oratile Modimoeng (JBS-GL300)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Nolwazi Khulu (JBS-GL386)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Tumelo Baloyi (JBS-GL083)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Mpho Modisenyane (JBS-GL181)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Neliswa Mdluli (JBS-GL349)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Botumile Jesone (JBS-GL273)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Thama Mabatha (JBS-GL239)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Sello Matlala (JBS-GL137)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Zintle Sidloyi (JBS-GL115)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Masindi Liphaswa (JBS-GL091)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Phidzaulima Sharence Ipfi (JBS-GL258)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Thamsanqa Mnyakeni (JBS-GL058)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Lawrence Mtsweni (JBS-GL158)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Lehlohonolo Mokhele (JBS-GL133)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Otlotleng Molelekedi (JBS-GL330)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Sthobiso Mtshweni (JBS-GL125)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Potso Matsimela (JBS-GL329)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Oratile Rantao (JBS-GL051)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Zamokuhle Maseko (JBS-GL113)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Surprise Siyabonga Mthombeni (JBS-GL359)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Siphiwe Skhosana (JBS-GL293)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Ndanganeni Nedzamba (JBS-GL302)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Leloko Benard Taataa (JBS-GL237)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Mamoloko Michelle Mpheroane (JBS-GL192)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Wildre Kammies (JBS-GL105)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Kevin Derrick Mbuyanne (JBS-GL335)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Athenkosi Kuna (JBS-GL297)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Lindokuhle Dlamini (JBS-GL388)</p>
+          <p><i class="fas fa-graduation-cap award-icon"></i>Molefi Edward (JBS-GL360)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="chatbot-container hidden" id="chatbotContainer">
+    <div class="chat-header">
+      <div class="flex items-center space-x-2">
+        <div class="avatar">
+          <img src="Images/GritLab Logo.png" alt="GRIT Lab Africa Logo">
+          <div class="status"></div>
+        </div>
+        <div>
+          <h2 class="title">GRIT Lab Africa Bot <i data-lucide="zap" class="h-3 w-3"></i></h2>
+          <p class="subtitle"><i data-lucide="book-open" class="h-2 w-2"></i>Ready to answer about GRIT Lab Africa</p>
+        </div>
+      </div>
+      <span class="badge">Knowledge Powered</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="avatar"><i data-lucide="bot" class="h-4 w-4"></i></div>
+        <div class="message-content">
+          <p>👋 Hello! Ask me anything about GRIT Lab Africa!</p>
+          <div class="meta">
+            <span id="currentTime"></span>
+            <div class="actions">
+              <button class="reaction-like" aria-label="Like this message" title="Like"><i data-lucide="thumbs-up" class="h-3 w-3"></i></button>
+              <button class="reaction-dislike" aria-label="Dislike this message" title="Dislike"><i data-lucide="thumbs-down" class="h-3 w-3"></i></button>
+              <button class="copy-message" aria-label="Copy message" title="Copy"><i data-lucide="copy" class="h-3 w-3"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="quick-prompts" id="quickPrompts">
+      <button data-prompt="What is GRIT Lab Africa?">What is GRIT Lab Africa?</button>
+      <button data-prompt="Who founded GRIT Lab Africa?">Who founded it?</button>
+      <button data-prompt="What programs does GRIT Lab Africa offer?">Programs</button>
+      <button data-prompt="When was GRIT Lab Africa founded?">Founded</button>
+      <button data-prompt="What are GRIT Lab Africa’s awards?">Awards</button>
+    </div>
+    <div class="chat-input">
+      <form id="chatForm">
+        <div class="input-wrapper">
+          <input type="text" id="chatInput" placeholder="Ask about GRIT Lab Africa...">
+          <div class="input-actions">
+            <button type="button" aria-label="Attach file" title="Attach"><i data-lucide="paperclip" class="h-4 w-4"></i></button>
+            <button type="button" aria-label="Add emoji" title="Emoji"><i data-lucide="smile" class="h-4 w-4"></i></button>
+            <button type="button" aria-label="Voice input" title="Voice"><i data-lucide="mic" class="h-4 w-4"></i></button>
+          </div>
+        </div>
+        <button type="submit" class="send-button" aria-label="Send message" title="Send"><i data-lucide="send" class="h-4 w-4"></i></button>
+      </form>
+      <p class="input-info">Press Enter to send • Answers sourced from multiple websites</p>
+    </div>
+  </div>
+  <button class="toggle-button" id="toggleButton">
+    <img src="Images/Screenshot 2026-01-08 183702.png" alt="Toggle Chatbot">
+  </button>
+
+  <!-- Footer will be inserted by masterpage.js -->
+  <gritlab-footer></gritlab-footer>
+
+  <!-- Masterpage JS -->
+  <script src="masterpage.js"></script>
+
+  <!-- Toggle Button Handler - Direct -->
+  <script>
+    function toggleChatbot() {
+      console.log('Toggle button clicked!');
+      const chatbot = document.getElementById('chatbotContainer');
+      if (chatbot) {
+        chatbot.classList.toggle('hidden');
+        console.log('Chatbot is now:', chatbot.classList.contains('hidden') ? 'hidden' : 'visible');
+      } else {
+        console.error('Chatbot container not found');
+      }
+    }
+    
+    // Direct OpenRouter API integration
+    async function sendChatMessage() {
+      console.log('sendChatMessage called');
+      const chatInput = document.getElementById('chatInput');
+      const message = chatInput.value.trim();
+      
+      if (!message) return;
+      
+      const messagesContainer = document.getElementById('chatMessages');
+      
+      // Add user message
+      const userMessage = document.createElement('div');
+      userMessage.className = 'message user';
+      userMessage.innerHTML = `
+        <div class="message-content">
+          <p>${message}</p>
+          <div class="meta">
+            <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(userMessage);
+      chatInput.value = '';
+      
+      // Add loading spinner
+      const loadingSpinner = document.createElement('div');
+      loadingSpinner.className = 'loading-spinner';
+      loadingSpinner.innerHTML = `<div class="dot"></div><div class="dot"></div><div class="dot"></div>`;
+      messagesContainer.appendChild(loadingSpinner);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      
+      // Call OpenRouter directly
+      try {
+        const models = [
+          'anthropic/claude-opus-4.6',
+          'liquid/lfm-2.5-1.2b-thinking:free',
+          'upstage/solar-pro-3:free',
+          'arcee-ai/trinity-large-preview:free',
+          'sourceful/riverflow-v2-pro'
+        ];
+        
+        let answer = null;
+        
+        for (const model of models) {
+          try {
+            console.log(`Trying model: ${model}`);
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer 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',
+                'Content-Type': 'application/json',
+                'HTTP-Referer': 'https://www.gritlabafrica.org',
+                'X-Title': 'GRIT Lab Africa Chatbot'
+              },
+              body: JSON.stringify({
+                model,
+                messages: [
+                  { 
+                    role: 'system', 
+                    content: `You are a helpful assistant for GRIT Lab Africa (gritlabafrica.org). ONLY provide information from the official gritlabafrica.org website. Do NOT make up information.
+
+KEY FACTS:
+**Founder**: Professor Abejide Ade-Ibijola (Full Professor of AI at University of Johannesburg)
+**Co-Directors**: Suhail Ally (Software Developer), Ms. Anthea Windvogel (Founder of ElevateHer)
+**Founded**: 2016
+**Mission**: Train young Africans in programming and tech skills
+**Track Record**: 2000+ students trained across 11 African countries with 100% employment rate
+
+**Programs**: Introductory Programming, Data Structures & Algorithms, Web Development, Mobile Apps, Game Development, Data Science, Machine Learning
+
+**Eligibility**: Ages 18-21, African resident, enrolled in accredited African higher institution, STEM or non-STEM with tech interest, 1st/2nd year with 65%+ average
+
+**Graduate Outcomes**: 100% employment rate, undergrads earn R22,000/month, fresh grads earn R37,500/month
+
+**Contact**: Phone: 011 599 1989, Email: info@gritlabafrica.org
+**Address**: 69 Kingsway Avenue, JBS Park, Auckland Park, South Africa
+
+If asked about something not listed above, say "I don't have that information. Please contact info@gritlabafrica.org for details." Never fabricate facts.` 
+                  },
+                  { 
+                    role: 'user', 
+                    content: message 
+                  }
+                ],
+                max_tokens: 500
+              })
+            });
+            
+            if (response.ok) {
+              const data = await response.json();
+              answer = data.choices[0].message.content;
+              console.log(`Success with model: ${model}`);
+              break;
+            }
+          } catch (err) {
+            console.error(`Model ${model} failed:`, err.message);
+            continue;
+          }
+        }
+        
+        if (!answer) {
+          answer = 'Sorry, I could not process your request. Please try again later or contact info@gritlabafrica.org';
+        }
+        
+        // Format response with comprehensive markdown support
+        let formattedAnswer = answer
+          .replace(/^### (.*?)$/gm, '<h3>$1</h3>')            // H3 headings
+          .replace(/^## (.*?)$/gm, '<h2>$1</h2>')             // H2 headings
+          .replace(/^# (.*?)$/gm, '<h1>$1</h1>')              // H1 headings
+          .replace(/^- (.*?)$/gm, '<li>$1</li>')              // Bullet points
+          .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')         // Wrap bullets in ul
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold text
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')              // Italic text
+          .replace(/\n\n/g, '</p><p>')                       // Paragraph breaks
+          .replace(/\n/g, '<br>');                           // Line breaks
+        
+        // Add bot message
+        const botMessage = document.createElement('div');
+        botMessage.className = 'message bot';
+        botMessage.innerHTML = `
+          <div class="message-content">
+            <p>${formattedAnswer}</p>
+            <div class="meta">
+              <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            </div>
+          </div>
+        `;
+        
+        messagesContainer.removeChild(loadingSpinner);
+        messagesContainer.appendChild(botMessage);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      } catch (error) {
+        console.error('Error:', error);
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'message bot';
+        errorMessage.innerHTML = `
+          <div class="message-content">
+            <p>Error: ${error.message}</p>
+          </div>
+        `;
+        messagesContainer.removeChild(loadingSpinner);
+        messagesContainer.appendChild(errorMessage);
+      }
+    }
+    
+    // Attach listener immediately
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Attaching toggle button listener...');
+      const btn = document.getElementById('toggleButton');
+      if (btn) {
+        btn.addEventListener('click', toggleChatbot);
+        console.log('Toggle button listener attached');
+      }
+      
+      // Attach form handler
+      const chatForm = document.getElementById('chatForm');
+      if (chatForm) {
+        console.log('Attaching form submit handler...');
+        chatForm.addEventListener('submit', function(e) {
+          console.log('Form submit event caught');
+          e.preventDefault();
+          e.stopPropagation();
+          sendChatMessage();
+          return false;
+        });
+      }
+      
+      // Attach Enter key handler to input
+      const chatInput = document.getElementById('chatInput');
+      if (chatInput) {
+        console.log('Attaching input Enter key handler...');
+        chatInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            console.log('Enter key pressed in input');
+            e.preventDefault();
+            sendChatMessage();
+          }
+        });
+      }
+    });
+  </script>
+
+  <!-- Chatbot JS -->
+  <script type="module" src="chatbot.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Animate on Scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.grit-card, .class-card, .graduate-item, .full-width-card');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.1 });
+        elements.forEach(element => {
+          element.style.opacity = 0;
+          element.style.transform = 'translateY(20px)';
+          element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(element);
+        });
+      };
+
+      animateOnScroll();
+    });
+  </script>
+</body>
+</html>

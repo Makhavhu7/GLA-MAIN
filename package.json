@@ -1,0 +1,19 @@
+{
+  "name": "grit-lab-africa",
+  "version": "1.0.1",
+  "description": "GRIT Lab Africa Bootcamp Website",
+  "scripts": {
+    "build": "node build.js",
+    "start": "echo 'Ready for deployment'",
+    "verify": "node -v && npm -v"
+  },
+  "dependencies": {
+    "fast-levenshtein": "^2.0.6",
+    "firebase-admin": "^13.6.1",
+    "natural": "^6.12.0",
+    "node-fetch": "^2.6.12"
+  },
+  "devDependencies": {
+    "eslint": "^10.0.0"
+  }
+}

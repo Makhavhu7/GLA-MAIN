@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRITLab Africa - Our Team</title>
+  <link rel="icon" type="image/png" href="Assets/images/GritLabAfricaLogo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Masterpage CSS -->
+  <link rel="stylesheet" href="masterpage.css">
+
+    <!-- Chatbot dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.441.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@7.0.0/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  
+  <!-- Masterpage CSS -->
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+  
+  <!-- Custom CSS for Our Team Page -->
+  <style>
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      color: #000;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      background-color: rgba(0, 0, 0, 0.3);
+      background-blend-mode: overlay;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(226, 221, 221, 0.15), rgba(226, 221, 221, 0.15));
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 20px 0;
+      line-height: 1.2;
+      color: darkgoldenrod;
+    }
+
+    .founder-section {
+      padding: 5rem 0;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    .founder-heading {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .founder-subheading {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .founder-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+
+    .founder-line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #333;
+    }
+
+    .founder-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .founder-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 2rem auto;
+      border: 5px solid darkgoldenrod;
+    }
+
+    .founder-name {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .founder-title {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .founder-institution {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .founder-quote {
+      font-style: italic;
+      color: darkgoldenrod;
+      font-size: 1.2rem;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+
+    .directors-section {
+      padding: 5rem 0;
+      background-color: #e0e0e0;
+      text-align: center;
+    }
+
+    .directors-heading {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .directors-subheading {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .directors-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+
+    .directors-line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #333;
+    }
+
+    .directors-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .director-card {
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+    }
+
+    .director-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      border: 5px solid darkgoldenrod;
+    }
+
+    .director-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .director-title {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .director-role {
+      font-size: 1rem;
+      color: darkgoldenrod;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .director-institution {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .collaborators-section {
+      padding: 5rem 0;
+      background-color: #d0d0d0;
+      text-align: center;
+    }
+
+    .collaborators-heading {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .collaborators-subheading {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .collaborators-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+
+    .collaborators-line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #333;
+    }
+
+    .collaborators-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .collaborator-card {
+      flex: 0 0 calc(33.333% - 2rem);
+      min-width: 300px;
+      max-width: 350px;
+      margin-bottom: 2rem;
+    }
+
+    .collaborator-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      border: 5px solid darkgoldenrod;
+    }
+
+    .collaborator-name {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .collaborator-title {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .collaborator-institution {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .collaborator-country {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 991px) {
+      .hero {
+        height: auto;
+        padding: 120px 0 60px;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .founder-heading,
+      .directors-heading,
+      .collaborators-heading {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .founder-heading,
+      .directors-heading,
+      .collaborators-heading {
+        font-size: 2rem;
+      }
+
+      .founder-image,
+      .director-image {
+        width: 160px;
+        height: 160px;
+      }
+
+      .director-card,
+      .collaborator-card {
+        flex: 0 0 100%;
+        max-width: 400px;
+      }
+
+      .collaborator-image {
+        width: 160px;
+        height: 160px;
+      }
+
+      .founder-name {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .founder-heading,
+      .directors-heading,
+      .collaborators-heading {
+        font-size: 1.8rem;
+      }
+
+      .founder-subheading,
+      .directors-subheading,
+      .collaborators-subheading {
+        font-size: 1rem;
+      }
+
+      .collaborator-name {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header will be inserted by masterpage.js -->
+  <gritlab-header></gritlab-header>
+
+  <section class="hero">
+    <div class="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('Assets/images/Team6.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('Assets/images/Team5.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('Assets/images/Team7.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('Assets/images/Team4.jpg')"></div>
+    </div>
+    <div class="container">
+      <h1>Our Team</h1>
+    </div>
+  </section>
+
+  <section class="founder-section" id="founder">
+    <div class="container">
+      <div class="founder-divider">
+        <span class="founder-line"></span>
+      </div>
+      <h2 class="founder-heading">Founder and Chairman</h2>
+      <div class="founder-divider">
+        <span class="founder-line"></span>
+      </div>
+      <div class="founder-content">
+        <img src="Assets/images/founder.png" alt="Professor Abejide Ade-Ibijola" class="founder-image">
+        <h3 class="founder-name">Professor Abejide Ade-Ibijola</h3>
+        <p class="founder-title">Full Professor of Artificial Intelligence and Applications</p>
+        <p class="founder-institution">Johannesburg Business School</p>
+        <p class="founder-institution">University of Johannesburg</p>
+        <p class="founder-institution">South Africa</p>
+        <a href="docs/cv.pdf" class="cta-btn" download style="margin-top: 1.5rem;">Download CV</a>
+        <p class="founder-quote">"Building machines with minds"</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="directors-section" id="directors">
+    <div class="container">
+      <div class="directors-divider">
+        <span class="directors-line"></span>
+      </div>
+      <h2 class="directors-heading">Directors</h2>
+      <div class="directors-divider">
+        <span class="directors-line"></span>
+      </div>
+      <div class="directors-container">
+        <div class="director-card">
+          <img src="Assets/images/suhail.png" alt="Suhail Ally" class="director-image">
+          <h3 class="director-name">Suhail Ally</h3>
+          <p class="director-title">Software Developer, Dariel</p>
+          <p class="director-role">Co-Director GLA</p>
+          <p class="director-institution">South Africa</p>
+        </div>
+        <div class="director-card">
+          <img src="Assets/images/anthea.png" alt="Anthea Windvogel" class="director-image">
+          <h3 class="director-name">Anthea Windvogel</h3>
+          <p class="director-title">Founder of ElevateHer</p>
+          <p class="director-role">Co-Director GLA</p>
+          <p class="director-institution">South Africa</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collaborators-section" id="collaborators">
+    <div class="container">
+      <div class="collaborators-divider">
+        <span class="collaborators-line"></span>
+      </div>
+      <h2 class="collaborators-heading">Collaborators</h2>
+      <div class="collaborators-divider">
+        <span class="collaborators-line"></span>
+      </div>
+      <div class="collaborators-container">
+        <div class="collaborator-card">
+          <img src="Assets/images/c1.png" alt="Stephen Obare" class="collaborator-image">
+          <h3 class="collaborator-name">Stephen Obare</h3>
+          <p class="collaborator-country">Kenya</p>
+        </div>
+        <div class="collaborator-card">
+          <img src="Assets/images/c2.png" alt="Dr Elizabeth Mkoba" class="collaborator-image">
+          <h3 class="collaborator-name">Dr Elizabeth Mkoba</h3>
+          <p class="collaborator-institution">The Nelson Mandela African Institute of Science and Technology</p>
+          <p class="collaborator-country">Tanzania</p>
+        </div>
+        <div class="collaborator-card">
+          <img src="Assets/images/c3.png" alt="Prof. Francisca O. Oladipo" class="collaborator-image">
+          <h3 class="collaborator-name">Prof. Francisca O. Oladipo</h3>
+          <p class="collaborator-title">Vice-Chancellor, TAU</p>
+          <p class="collaborator-country">Nigeria</p>
+        </div>
+        <div class="collaborator-card">
+          <img src="Assets/images/c4.png" alt="Dr. Pius Onobhayedo" class="collaborator-image">
+          <h3 class="collaborator-name">Dr. Pius Onobhayedo</h3>
+          <p class="collaborator-title">Head of Department: Computer and Information Sciences</p>
+          <p class="collaborator-institution">Pan-Atlantic University</p>
+          <p class="collaborator-country">Nigeria</p>
+        </div>
+        <div class="collaborator-card">
+          <img src="Assets/images/c5.png" alt="Prof. Adenike Osofisan" class="collaborator-image">
+          <h3 class="collaborator-name">Prof. Adenike Osofisan</h3>
+          <p class="collaborator-institution">University of Ibadan</p>
+          <p class="collaborator-country">Nigeria</p>
+        </div>
+        <div class="collaborator-card">
+          <img src="Assets/images/c6.png" alt="Prof. Abdalla Ahmed Elbashir" class="collaborator-image">
+          <h3 class="collaborator-name">Prof. Abdalla Ahmed Elbashir</h3>
+          <p class="collaborator-institution">University of Khartoum</p>
+          <p class="collaborator-country">Sudan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="chatbot-container hidden" id="chatbotContainer">
+    <div class="chat-header">
+      <div class="flex items-center space-x-2">
+        <div class="avatar">
+          <img src="Images/GritLab Logo.png" alt="GRIT Lab Africa Logo">
+          <div class="status"></div>
+        </div>
+        <div>
+          <h2 class="title">GRIT Lab Africa Bot <i data-lucide="zap" class="h-3 w-3"></i></h2>
+          <p class="subtitle"><i data-lucide="book-open" class="h-2 w-2"></i>Ready to answer about GRIT Lab Africa</p>
+        </div>
+      </div>
+      <span class="badge">Knowledge Powered</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="avatar"><i data-lucide="bot" class="h-4 w-4"></i></div>
+        <div class="message-content">
+          <p>👋 Hello! Ask me anything about GRIT Lab Africa!</p>
+          <div class="meta">
+            <span id="currentTime"></span>
+            <div class="actions">
+              <button class="reaction-like" aria-label="Like this message" title="Like"><i data-lucide="thumbs-up" class="h-3 w-3"></i></button>
+              <button class="reaction-dislike" aria-label="Dislike this message" title="Dislike"><i data-lucide="thumbs-down" class="h-3 w-3"></i></button>
+              <button class="copy-message" aria-label="Copy message" title="Copy"><i data-lucide="copy" class="h-3 w-3"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="quick-prompts" id="quickPrompts">
+      <button data-prompt="What is GRIT Lab Africa?">What is GRIT Lab Africa?</button>
+      <button data-prompt="Who founded GRIT Lab Africa?">Who founded it?</button>
+      <button data-prompt="What programs does GRIT Lab Africa offer?">Programs</button>
+      <button data-prompt="When was GRIT Lab Africa founded?">Founded</button>
+      <button data-prompt="What are GRIT Lab Africa’s awards?">Awards</button>
+    </div>
+    <div class="chat-input">
+      <form id="chatForm">
+        <div class="input-wrapper">
+          <input type="text" id="chatInput" placeholder="Ask about GRIT Lab Africa...">
+          <div class="input-actions">
+            <button type="button" aria-label="Attach file" title="Attach"><i data-lucide="paperclip" class="h-4 w-4"></i></button>
+            <button type="button" aria-label="Add emoji" title="Emoji"><i data-lucide="smile" class="h-4 w-4"></i></button>
+            <button type="button" aria-label="Voice input" title="Voice"><i data-lucide="mic" class="h-4 w-4"></i></button>
+          </div>
+        </div>
+        <button type="submit" class="send-button" aria-label="Send message" title="Send"><i data-lucide="send" class="h-4 w-4"></i></button>
+      </form>
+      <p class="input-info">Press Enter to send • Answers sourced from multiple websites</p>
+    </div>
+  </div>
+  <button class="toggle-button" id="toggleButton">
+    <img src="Images/Screenshot 2026-01-08 183702.png" alt="Toggle Chatbot">
+  </button>
+
+  <!-- Footer will be inserted by masterpage.js -->
+  <gritlab-footer></gritlab-footer>
+
+  <!-- Masterpage JS -->
+  <script src="masterpage.js"></script>
+
+  <!-- Toggle Button Handler - Direct -->
+  <script>
+    function toggleChatbot() {
+      console.log('Toggle button clicked!');
+      const chatbot = document.getElementById('chatbotContainer');
+      if (chatbot) {
+        chatbot.classList.toggle('hidden');
+        console.log('Chatbot is now:', chatbot.classList.contains('hidden') ? 'hidden' : 'visible');
+      } else {
+        console.error('Chatbot container not found');
+      }
+    }
+    
+    // Direct OpenRouter API integration
+    async function sendChatMessage() {
+      console.log('sendChatMessage called');
+      const chatInput = document.getElementById('chatInput');
+      const message = chatInput.value.trim();
+      
+      if (!message) return;
+      
+      const messagesContainer = document.getElementById('chatMessages');
+      
+      // Add user message
+      const userMessage = document.createElement('div');
+      userMessage.className = 'message user';
+      userMessage.innerHTML = `
+        <div class="message-content">
+          <p>${message}</p>
+          <div class="meta">
+            <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(userMessage);
+      chatInput.value = '';
+      
+      // Add loading spinner
+      const loadingSpinner = document.createElement('div');
+      loadingSpinner.className = 'loading-spinner';
+      loadingSpinner.innerHTML = `<div class="dot"></div><div class="dot"></div><div class="dot"></div>`;
+      messagesContainer.appendChild(loadingSpinner);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      
+      // Call OpenRouter directly
+      try {
+        const models = [
+          'anthropic/claude-opus-4.6',
+          'liquid/lfm-2.5-1.2b-thinking:free',
+          'upstage/solar-pro-3:free',
+          'arcee-ai/trinity-large-preview:free',
+          'sourceful/riverflow-v2-pro'
+        ];
+        
+        let answer = null;
+        
+        for (const model of models) {
+          try {
+            console.log(`Trying model: ${model}`);
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer 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',
+                'Content-Type': 'application/json',
+                'HTTP-Referer': 'https://www.gritlabafrica.org',
+                'X-Title': 'GRIT Lab Africa Chatbot'
+              },
+              body: JSON.stringify({
+                model,
+                messages: [
+                  { 
+                    role: 'system', 
+                    content: `You are a helpful assistant for GRIT Lab Africa (gritlabafrica.org). ONLY provide information from the official gritlabafrica.org website. Do NOT make up information.
+
+KEY FACTS:
+**Founder**: Professor Abejide Ade-Ibijola (Full Professor of AI at University of Johannesburg)
+**Co-Directors**: Suhail Ally (Software Developer), Ms. Anthea Windvogel (Founder of ElevateHer)
+**Founded**: 2016
+**Mission**: Train young Africans in programming and tech skills
+**Track Record**: 2000+ students trained across 11 African countries with 100% employment rate
+
+**Programs**: Introductory Programming, Data Structures & Algorithms, Web Development, Mobile Apps, Game Development, Data Science, Machine Learning
+
+**Eligibility**: Ages 18-21, African resident, enrolled in accredited African higher institution, STEM or non-STEM with tech interest, 1st/2nd year with 65%+ average
+
+**Graduate Outcomes**: 100% employment rate, undergrads earn R22,000/month, fresh grads earn R37,500/month
+
+**Contact**: Phone: 011 599 1989, Email: info@gritlabafrica.org
+**Address**: 69 Kingsway Avenue, JBS Park, Auckland Park, South Africa
+
+If asked about something not listed above, say "I don't have that information. Please contact info@gritlabafrica.org for details." Never fabricate facts.` 
+                  },
+                  { 
+                    role: 'user', 
+                    content: message 
+                  }
+                ],
+                max_tokens: 500
+              })
+            });
+            
+            if (response.ok) {
+              const data = await response.json();
+              answer = data.choices[0].message.content;
+              console.log(`Success with model: ${model}`);
+              break;
+            }
+          } catch (err) {
+            console.error(`Model ${model} failed:`, err.message);
+            continue;
+          }
+        }
+        
+        if (!answer) {
+          answer = 'Sorry, I could not process your request. Please try again later or contact info@gritlabafrica.org';
+        }
+        
+        // Format response with comprehensive markdown support
+        let formattedAnswer = answer
+          .replace(/^### (.*?)$/gm, '<h3>$1</h3>')            // H3 headings
+          .replace(/^## (.*?)$/gm, '<h2>$1</h2>')             // H2 headings
+          .replace(/^# (.*?)$/gm, '<h1>$1</h1>')              // H1 headings
+          .replace(/^- (.*?)$/gm, '<li>$1</li>')              // Bullet points
+          .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')         // Wrap bullets in ul
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold text
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')              // Italic text
+          .replace(/\n\n/g, '</p><p>')                       // Paragraph breaks
+          .replace(/\n/g, '<br>');                           // Line breaks
+        
+        // Add bot message
+        const botMessage = document.createElement('div');
+        botMessage.className = 'message bot';
+        botMessage.innerHTML = `
+          <div class="message-content">
+            <p>${formattedAnswer}</p>
+            <div class="meta">
+              <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            </div>
+          </div>
+        `;
+        
+        messagesContainer.removeChild(loadingSpinner);
+        messagesContainer.appendChild(botMessage);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      } catch (error) {
+        console.error('Error:', error);
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'message bot';
+        errorMessage.innerHTML = `
+          <div class="message-content">
+            <p>Error: ${error.message}</p>
+          </div>
+        `;
+        messagesContainer.removeChild(loadingSpinner);
+        messagesContainer.appendChild(errorMessage);
+      }
+    }
+    
+    // Attach listener immediately
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Attaching toggle button listener...');
+      const btn = document.getElementById('toggleButton');
+      if (btn) {
+        btn.addEventListener('click', toggleChatbot);
+        console.log('Toggle button listener attached');
+      }
+      
+      // Attach form handler
+      const chatForm = document.getElementById('chatForm');
+      if (chatForm) {
+        console.log('Attaching form submit handler...');
+        chatForm.addEventListener('submit', function(e) {
+          console.log('Form submit event caught');
+          e.preventDefault();
+          e.stopPropagation();
+          sendChatMessage();
+          return false;
+        });
+      }
+      
+      // Attach Enter key handler to input
+      const chatInput = document.getElementById('chatInput');
+      if (chatInput) {
+        console.log('Attaching input Enter key handler...');
+        chatInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            console.log('Enter key pressed in input');
+            e.preventDefault();
+            sendChatMessage();
+          }
+        });
+      }
+    });
+  </script>
+
+  <!-- Chatbot JS -->
+  <script type="module" src="chatbot.js"></script>
+
+  <!-- Custom JS for this page -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hero slideshow
+      const heroSlides = document.querySelectorAll('.hero-slide');
+      let currentHeroSlide = 0;
+
+      setInterval(() => {
+        heroSlides[currentHeroSlide].classList.remove('active');
+        currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+        heroSlides[currentHeroSlide].classList.add('active');
+      }, 5000);
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

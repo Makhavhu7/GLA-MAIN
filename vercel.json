@@ -1,0 +1,23 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "public": false,
+  "functions": {
+    "api/**/*.js": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/queryOpenSources",
+      "destination": "/api/queryOpenSources.js"
+    }
+  ],
+  "routes": [
+    {
+      "src": "(?!.*\\.(js|css|gif|jpg|jpeg|png|ico|txt|svg|webp|woff|woff2)$).*",
+      "dest": "index.html"
+    }
+  ]
+}
